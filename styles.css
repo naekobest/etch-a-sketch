@@ -24,3 +24,10 @@ header > .nav {
     text-align: center;
     padding-top: 15px;
 }
+
+.nav > button {
+    font-family: serif;
+    padding: 5px;
+    margin: 5px;
+    font-size: 14px;
+}
