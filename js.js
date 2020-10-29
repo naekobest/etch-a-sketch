@@ -32,7 +32,7 @@ function makeGrid(rows, cols){
         container.appendChild(div);
 
         // EventListener for bg-color red
-        div.addEventListener("mouseover", rndColor);
+        div.addEventListener("mouseover", currentColor);
     }
 }
 
@@ -51,9 +51,25 @@ resetButton.addEventListener("click", () => {
 
 // Eventlistener to pick random color
 colorButton.addEventListener("click", () => {
-    this.removeEventListener("mouseover", currentColor);
-    this.addEventListener("mouseover", rndColor);
-    // this.style.backgroundColor = rndColor;
+    const divs = container.querySelectorAll("div");
+    for (const div of divs){
+        div.removeEventListener("mouseover", currentColor);
+        div.addEventListener("mouseover", rndColor);
+    }
 });
+
+// EventListener to change grid size
+sizeButton.addEventListener("click", () => {
+    const gridSize = prompt("What grid size do you want?");
+
+    if (gridSize > 100 || gridSize <= 15){
+        alert("Min. size: 16x16 // Max. size: 100x100");
+    } else if (isNaN(gridSize) == true){
+        alert("Input has to be a number!");
+    } else {
+        resetGrid();
+        makeGrid(gridSize, gridSize);
+    }
+})
 
 makeGrid(16, 16);
